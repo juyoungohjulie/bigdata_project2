@@ -1,5 +1,3 @@
-# label이 6개인데 4개를 떨궈내는 코드를 포함 안 시켜서 에라가 난 모양.
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -145,8 +143,7 @@ acc_label = f'Best epoch = {str(index_acc + 1)}'
 per_label = f'Best epoch = {str(index_precision + 1)}'
 recall_label = f'Best epoch = {str(index_recall + 1)}'
 
-# 저장할 디렉토리 생성
-# dir_path = ensure_dir('model_metrics')
+
 dir_path = ensure_dir()
 save_figs_all(Epochs, train_loss, val_loss, index_loss, val_lowest, loss_label, train_acc, val_acc, index_acc, acc_highest, acc_label, train_per, val_per, index_precision, per_highest, per_label, train_recall, val_recall, index_recall, recall_highest, recall_label)
 
@@ -157,23 +154,9 @@ for i in range(len(test_y)):
     x = np.argmax(test_y[i]) 
     y_true.append(x)
 
-preds = model.predict(test_x)  # [test_x, test_x] 대신 test_x로 수정
+preds = model.predict(test_x)  
 y_pred = np.argmax(preds, axis=1)
 
-# plt.figure(figsize=(8,6))
-# emotions = {0: 'anger', 1: 'fear', 2: 'joy', 3:'sadness'}
-# emotions = list(emotions.values())
-# cm = confusion_matrix(y_true, y_pred)
-# sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=emotions, yticklabels=emotions)
-# plt.title('Confusion Matrix')
-# plt.xlabel('Predicted')
-# plt.ylabel('True')
-
-# # 히트맵 저장
-# dir_path = ensure_dir()  # 이미 정의된 ensure_dir 함수 사용
-# file_path = os.path.join(dir_path, 'confusion_matrix.png')
-# plt.savefig(file_path, dpi=300, bbox_inches='tight')
-# print(f"혼동 행렬이 저장되었습니다: {os.path.abspath(file_path)}")
 save_figs_confusion_matrix(y_true, y_pred)
 
 # print the confusion matrix 
@@ -187,7 +170,7 @@ with open('tokenizer.pkl', 'wb') as tokenizer_file:
 # model.save('nlp.h5')
 model.save_weights('model2.weights.h5')
 txt = 'I am so nervous until I finish this project'
-# 수정: 올바른 가중치 파일 경로 사용
+
 predict(txt, 'model2.weights.h5', 'tokenizer.pkl')
 
 txt = 'He laughed aloud, unable to hide his excitement.'
@@ -206,21 +189,12 @@ def get_emotion_mappings(file_paths):
     all_emotions = set()
     for file_path in file_paths:
         try:
-            # 데이터가 탭으로 구분되어 있거나 다른 구분자일 수 있으므로 확인 필요
-            # 여기서는 ';'로 구분되어 있다고 가정합니다.
+            
             df = pd.read_csv(file_path, sep=';', header=None, names=['text', 'emotion'])
             all_emotions.update(df['emotion'].unique())
         except Exception as e:
             print(f"Error reading {file_path}: {e}")
-            # 파일이 비어있거나 형식이 다를 경우를 대비한 예외 처리
-            # 각 줄을 직접 파싱해야 할 수도 있습니다.
-            # 예:
-            # with open(file_path, 'r', encoding='utf-8') as f:
-            #     for line in f:
-            #         parts = line.strip().split(';')
-            #         if len(parts) == 2:
-            #             all_emotions.add(parts[1])
-
+            
     sorted_emotions = sorted(list(all_emotions))
     
     emotion_to_id = {emotion: i for i, emotion in enumerate(sorted_emotions)}
@@ -228,8 +202,7 @@ def get_emotion_mappings(file_paths):
     
     return emotion_to_id, id_to_emotion, len(sorted_emotions)
 
-# 파일 경로 리스트
-file_paths = ['train.txt', 'val.txt', 'test.txt'] # 실제 파일 경로로 수정하세요.
+file_paths = ['train.txt', 'val.txt', 'test.txt'] 
 
 emotion_to_id, id_to_emotion, num_classes = get_emotion_mappings(file_paths)
 
