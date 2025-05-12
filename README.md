@@ -25,7 +25,7 @@ Create your own folder to clone the git repository, and run the following comman
 docker run -itd \
   -v .:/workspace/ \
   --ipc=host \
-  --name bigdatas \
+  --name bigdata \
   tensorflow/tensorflow:latest-gpu
 ```
 
