@@ -32,7 +32,7 @@ docker run -itd \
 
 ```bash
 docker exec -it bigdata /bin/bash
-cd bigdata_project2
+cd workspace/bigdata_project2/bigdata
 ```
 
 ---
