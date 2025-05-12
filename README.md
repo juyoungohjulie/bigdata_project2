@@ -37,7 +37,7 @@ cd bigdata_project2
 
 ---
 
-## 📦 Dependencies
+## Dependencies
 
 Before running the code, install the required Python libraries:
 
@@ -47,7 +47,7 @@ pip install pandas matplotlib seaborn scikit-learn
 
 ---
 
-## 🚀 Run the Model
+## Run the Model
 
 Once everything is set up, run the CNN-based emotion classifier using:
 
