@@ -17,14 +17,15 @@ Download the dataset using the following link:
 ## Environment Setup
 
 All experiments were conducted inside a **Docker container** on a **Linux environment**.
+Create your own folder to clone the git repository, and run the following commands below
 
 ### 1. Run Docker Container
 
 ```bash
 docker run -itd \
-  -v /bigdata_project2/:/workspace/bigdata_project2 \
+  -v .:/workspace/ \
   --ipc=host \
-  --name bigdata \
+  --name bigdatas \
   tensorflow/tensorflow:latest-gpu
 ```
 
