@@ -113,10 +113,10 @@ history = model.fit(train_x, train_y, epochs=epochs, batch_size=batch_size,
 
 # Evaluate and visualize the model in various formats
 (loss, accuracy, percision, recall) = model.evaluate(train_x, train_y)
-print(f'Loss: {round(loss, 2)}, Accuracy: {round(accuracy, 2)}, Precision: {round(percision, 2)}, Recall: {round(recall, 2)}')
+print(f'Train: Loss: {round(loss, 2)}, Accuracy: {round(accuracy, 2)}, Precision: {round(percision, 2)}, Recall: {round(recall, 2)}')
 
 (loss, accuracy, percision, recall) = model.evaluate(test_x, test_y)
-print(f'Loss: {round(loss, 2)}, Accuracy: {round(accuracy, 2)}, Precision: {round(percision, 2)}, Recall: {round(recall, 2)}')
+print(f'Test: Loss: {round(loss, 2)}, Accuracy: {round(accuracy, 2)}, Precision: {round(percision, 2)}, Recall: {round(recall, 2)}')
 
 train_acc = history.history['accuracy']
 train_loss = history.history['loss']
@@ -173,14 +173,14 @@ txt = 'I am so nervous until I finish this project'
 
 predict(txt, 'model2.weights.h5', 'tokenizer.pkl')
 
-txt = 'He laughed aloud, unable to hide his excitement.'
-predict(txt, 'model2.weights.h5', 'tokenizer.pkl')
+# txt = 'He laughed aloud, unable to hide his excitement.'
+# predict(txt, 'model2.weights.h5', 'tokenizer.pkl')
 
-txt = 'Her hands trembled as the door creaked open.'
-predict(txt, 'model2.weights.h5', 'tokenizer.pkl')
+# txt = 'Her hands trembled as the door creaked open.'
+# predict(txt, 'model2.weights.h5', 'tokenizer.pkl')
 
-txt = 'He slammed the book shut, his face burning with rage.'
-predict(txt, 'model2.weights.h5', 'tokenizer.pkl')
+# txt = 'He slammed the book shut, his face burning with rage.'
+# predict(txt, 'model2.weights.h5', 'tokenizer.pkl')
 
 ###################################### get_emotion_mappings ######################################
 import pandas as pd
